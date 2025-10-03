@@ -97,6 +97,16 @@ Screenshots of the website on desktop, tablet, and mobile are provided in the `/
 
 ---
 
+## References
+
+- **Images:** Product and recipe images were downloaded from [Pinterest](https://www.pinterest.com/).
+- **Fonts:** The website uses [Google Fonts](https://fonts.google.com/) for improved typography.
+- **Icons:** Cart icon from [Flaticon](https://www.flaticon.com/).
+- **Other:** Layout and responsive design concepts were implemented using best practices from CSS documentation and MDN Web Docs.
+
+---
+
 ## License
 
 This project is for educational purposes.
+
