@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - SUNRISE ARTISAN BAKERY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+</head>
+<body>
+    <header>
+        <img src="sunrise_bakery_logo_small.png" alt="Sunrise Artisan Bakery Logo" width="80" height="80">
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+        <div class="cart-topright">
+            <a href="#" class="cart-link" id="cartBtn">
+                <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart" class="cart-icon">
+                <span class="cart-label" id="cartCount">Cart (0)</span>
+            </a>
+        </div>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <section class="section" id="products">
+        <h2>Our Products</h2>
+        <div class="products-list">
+            <div class="product-card" data-name="Classic White Bread" data-price="20.00">
+                <img src="classic white bread.jpg" alt="Classic White Bread">
+                <h3>Classic White Bread</h3>
+                <p>Organic, hand-crafted classic white bread. <strong>R20.00</strong></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Croissants" data-price="15.00">
+                <img src="croissants.jpg" alt="Croissants">
+                <h3>Croissants</h3>
+                <p>Flaky pastry filled with chocolate. <strong>R15.00</strong></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Donuts" data-price="30.00">
+                <img src="donuts.jpg" alt="Donuts">
+                <h3>Donuts</h3>
+                <p>Delicious Donuts. <strong>R30.00</strong></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Seeded Whole Wheat" data-price="30.00">
+                <img src="whole wheat bread.jpg" alt="Seeded Whole Wheat">
+                <h3>Whole Wheat Bread</h3>
+                <p>Whole wheat bread packed with seeds. <strong>R30.00</strong></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-name="Tsakani's Custard Scones" data-price="45.00">
+                <img src="scones.jpg" alt="Tsakani's custard scones">
+                <h3>Tsakani's custard scones</h3>
+                <p>Scones. <strong>R45.00</strong></p>
+                <button class="add-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+    <div id="cartPopup" class="cart-popup">
+        <div class="cart-popup-content">
+            <span class="close-cart" id="closeCart">&times;</span>
+            <h2>Order Cart</h2>
+            <div class="cart-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartItems"></tbody>
+                </table>
+                <div class="cart-total" id="cartTotal">
+                    <strong>Total:</strong> R0.00
+                </div>
+                <button class="checkout-btn" id="checkoutBtn" disabled>Checkout</button>
+                <p class="cart-note">Add products to your cart and proceed to checkout.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html>
