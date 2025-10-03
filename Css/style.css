@@ -1,0 +1,354 @@
+/* CSS Reset (Modern) */
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    background: #fffdfa;
+    color: #442c19;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2rem 0.5rem 2rem;
+    background: linear-gradient(90deg, #fde1be 0%, #fff8ed 100%);
+    box-shadow: 0 2px 8px rgba(180, 143, 94, 0.07);
+}
+header img {
+    border-radius: 50%;
+    max-width: 80px;
+    height: 80px;
+}
+header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.2em;
+    color: #924f1d;
+}
+header p {
+    font-size: 1.1rem;
+    color: #b0833a;
+}
+.cart-topright {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.cart-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #924f1d;
+    font-weight: 500;
+}
+.cart-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5em;
+}
+.cart-label {
+    background: #ffda9d;
+    padding: 0.25em 0.7em;
+    border-radius: 20px;
+    font-size: 1em;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background: #fff9ed;
+    border-bottom: 1px solid #ffe1b4;
+    padding: 0.7rem 0;
+    font-size: 1.1rem;
+}
+nav a {
+    color: #8d4a00;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.4em 0.9em;
+    border-radius: 18px;
+    transition: background 0.2s, color 0.2s;
+}
+nav a:hover, nav a:focus {
+    background: #ffda9d;
+    color: #6a3002;
+}
+.section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+    background: #fffdfa;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(220, 170, 90, 0.09);
+}
+.hero {
+    background: url('bakery_hero.jpg') center/cover no-repeat, linear-gradient(to bottom, #fff8ed 80%, #fde1be 100%);
+    text-align: center;
+    padding: 3rem 1rem 4rem 1rem;
+    margin-bottom: 2rem;
+}
+.hero-content h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #c8842f;
+    margin-bottom: 0.4em;
+    letter-spacing: 0.03em;
+}
+.hero-content p {
+    font-size: 1.15rem;
+    color: #7c4b15;
+}
+.products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.product-card {
+    background: #fff6e0;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(220, 170, 90, 0.09);
+    padding: 1.3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.product-card img {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 12px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px #e7cfa6;
+}
+.product-card h3 {
+    font-size: 1.25rem;
+    color: #b0833a;
+    margin-bottom: 0.2em;
+}
+.product-card p {
+    font-size: 1rem;
+    color: #5b3b17;
+}
+.add-cart-btn {
+    background: #b0833a;
+    color: #fffdfa;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6em 1.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.add-cart-btn:hover, .add-cart-btn:focus {
+    background: #eeb45b;
+    color: #7c4b15;
+}
+.cart-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(60, 40, 14, 0.18);
+    justify-content: center;
+    align-items: center;
+}
+.cart-popup-content {
+    background: #fff8ed;
+    padding: 2rem 2.3rem;
+    border-radius: 14px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 4px 32px #d3aa70a2;
+    position: relative;
+}
+.close-cart {
+    position: absolute;
+    top: 1rem; right: 1.3rem;
+    font-size: 2rem;
+    color: #eeb45b;
+    cursor: pointer;
+}
+.cart-table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.cart-table th, .cart-table td {
+    padding: 0.6em 0.3em;
+    text-align: center;
+}
+.cart-table th {
+    background: #f8e5cd;
+    color: #7c4b15;
+}
+.cart-total {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #b0833a;
+}
+.checkout-btn {
+    background: #b0833a;
+    color: #fffdfa;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6em 2em;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 0.8em;
+    transition: background 0.2s;
+}
+.checkout-btn:disabled {
+    background: #f1e0b8;
+    color: #b0833a;
+    cursor: not-allowed;
+}
+.checkout-btn:hover:enabled, .checkout-btn:focus:enabled {
+    background: #eeb45b;
+    color: #7c4b15;
+}
+.qty-btn {
+    background: #fff1d0;
+    border: 1px solid #eeb45b;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 0.3em;
+    color: #b0833a;
+    transition: background 0.2s;
+}
+.qty-btn:hover, .qty-btn:focus {
+    background: #ffda9d;
+}
+.remove-cart-btn {
+    background: none;
+    border: none;
+    color: #e55353;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+footer {
+    background: #fff4dd;
+    color: #b0833a;
+    text-align: center;
+    padding: 1.1rem 0 1rem 0;
+    margin-top: auto;
+    font-size: 1rem;
+    border-top: 1px solid #ffe1b4;
+}
+.about-tabs, .contact-tabs, .recipes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-evenly;
+    margin: 2rem 0 1rem 0;
+}
+.about-tab, .contact-tab, .recipe {
+    background: #fff6e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(220, 170, 90, 0.07);
+    padding: 1.5rem;
+    flex: 1 1 320px;
+    min-width: 260px;
+    max-width: 400px;
+}
+.about-tab h3, .contact-tab h3 {
+    color: #b0833a;
+    margin-bottom: 0.7em;
+}
+.newsletter-form {
+    display: flex;
+    gap: 0.7em;
+}
+.newsletter-form input[type="email"] {
+    flex: 1;
+    padding: 0.6em;
+    border-radius: 14px;
+    border: 1px solid #eeb45b;
+    font-size: 1em;
+}
+.newsletter-form button {
+    background: #b0833a;
+    color: #fffdfa;
+    border: none;
+    border-radius: 14px;
+    padding: 0.6em 1.4em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.newsletter-form button:hover, .newsletter-form button:focus {
+    background: #eeb45b;
+    color: #7c4b15;
+}
+.map-container {
+    margin-top: 1em;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.map-container iframe {
+    width: 100%;
+    border-radius: 10px;
+}
+@media (max-width: 900px) {
+    .about-tabs, .contact-tabs, .recipes, .products-list {
+        gap: 1rem;
+    }
+    .about-tab, .contact-tab, .recipe, .product-card {
+        min-width: 200px;
+        max-width: 100%;
+        padding: 1rem;
+    }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 0.5rem;
+    }
+    .cart-topright {
+        position: static;
+        margin: 0.6em 0 0 0;
+    }
+    nav {
+        flex-direction: column;
+        gap: 0.6em;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+    }
+    .section {
+        padding: 1rem 0.4rem;
+        width: 98%;
+        margin: 1rem auto;
+    }
+    .about-tabs, .contact-tabs, .recipes, .products-list {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .hero-content h2 {
+        font-size: 1.2rem;
+    }
+    .product-card img {
+        max-width: 100%;
+    }
+}
