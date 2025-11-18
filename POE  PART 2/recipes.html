@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Popular, easy baking recipes from Sunrise Artisan Bakery. Explore delicious sandwich and French toast ideas.">
+    <meta name="keywords" content="bakery recipes, sandwiches, French toast, artisan, easy, bread, cafe recipes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/recipes.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="Sandwich & French Toast Recipes - Sunrise Artisan Bakery">
+    <meta property="og:description" content="Try bakery-favourite sandwich and French toast recipes at home!">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/recipes.html">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Artisan bakery logo for recipes" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html" aria-current="page">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="enquiry.html">Enquire</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <main>
+    <section class="section" id="recipes">
+        <h2>Bake with Us – Favourite Recipes</h2>
+        <input type="text" id="recipeSearch" placeholder="Search recipes..." aria-label="Filter recipes">
+        <div class="recipes" id="recipeList"></div>
+    </section>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.<br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    const recipes = [
+        {
+            name: "Classic French Toast", img: "French toast.jpg", 
+            ingredients: ["2 slices of white bread", "2 eggs", "1/2 cup milk", "1 tsp vanilla extract", "1/2 tsp cinnamon", "Butter for frying", "Maple syrup, for serving"],
+            instructions: [
+                "Whisk eggs, milk, vanilla, and cinnamon together in a bowl.",
+                "Dip bread slices into the mixture, coating both sides.",
+                "Melt butter in a skillet over medium heat.",
+                "Fry bread slices for 2–3 minutes per side until golden brown.",
+                "Serve hot with maple syrup."
+            ]
+        },
+        {
+            name: "Hearty Sandwich", img: "Hearty Sandwich.jpg",
+            ingredients: ["2 slices multigrain bread", "2 slices turkey or ham", "1 slice cheddar cheese", "Lettuce leaves", "Tomato slices", "Mayonnaise or mustard"],
+            instructions: [
+                "Spread mayonnaise or mustard on bread slices.",
+                "Layer lettuce, tomato, cheese, and meat on one slice.",
+                "Top with the second slice of bread.",
+                "Cut in half and serve fresh."
+            ]
+        },
+        {
+            name: "Grilled Cheese Sandwich", img: "Grilled Cheese Sandwich.jpg",
+            ingredients: ["2 slices white or sourdough bread", "2 slices cheddar cheese (or cheese of choice)", "Butter, softened"],
+            instructions: [
+                "Butter one side of each bread slice.",
+                "Place cheese between the unbuttered sides of bread.",
+                "Heat a skillet over medium heat. Place sandwich buttered side down.",
+                "Cook until golden brown, then flip and cook the other side.",
+                "Slice and serve hot."
+            ]
+        },
+        {
+            name: "Classic Peanut Butter & Jelly Sandwich", img: "Classic Peanut Butter and Jelly Sandwich.jpg",
+            ingredients: ["2 slices white or wheat bread", "2 tbsp peanut butter", "2 tbsp fruit jelly or jam"],
+            instructions: [
+                "Spread peanut butter on one slice of bread.",
+                "Spread jelly on the other slice.",
+                "Press together, slice in half, and enjoy!"
+            ]
+        }
+    ];
+    function renderRecipes(filter = "") {
+        let recipeDiv = document.getElementById('recipeList');
+        recipeDiv.innerHTML = "";
+        recipes.filter(r => r.name.toLowerCase().includes(filter)).forEach(recipe => {
+            let ingrList = recipe.ingredients.map(i => `<li>${i}</li>`).join('');
+            let instList = recipe.instructions.map(i => `<li>${i}</li>`).join('');
+            recipeDiv.innerHTML += `
+            <div class="recipe">
+                <img src="${recipe.img}" alt="${recipe.name}" loading="lazy">
+                <h3>${recipe.name}</h3>
+                <strong>Ingredients:</strong>
+                <ul>${ingrList}</ul>
+                <strong>Instructions:</strong>
+                <ol>${instList}</ol>
+            </div>`;
+        });
+        if (!recipeDiv.innerHTML)
+            recipeDiv.innerHTML = "<p>No recipes match your search.</p>";
+    }
+    document.getElementById('recipeSearch').addEventListener('input', function() {
+        renderRecipes(this.value.trim().toLowerCase());
+    });
+    renderRecipes();
+    </script>
+</body>
+</html>

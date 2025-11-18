@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Browse our artisan breads and pastries, handmade in Cape Town. Filter and search Sunrise Artisan Bakery’s delicious product range.">
+    <meta name="keywords" content="artisan bread, bakery products, Cape Town pastries, bread, gluten-free, sourdough, whole wheat, baguette, treats">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/products.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="Artisan Product Range - Sunrise Artisan Bakery">
+    <meta property="og:description" content="Our handmade breads, pastries and treats available in Cape Town.">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/products.html">
+    <link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Sunrise bakery logo" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html" aria-current="page">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="enquiry.html">Enquire</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <main>
+    <section class="section" id="products">
+        <h2>Our Product Range</h2>
+        <input type="text" id="productSearch" placeholder="Search bread, pastry..." aria-label="Filter products">
+        <div class="products-list" id="productsGrid"></div>
+    </section>
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightboxModal" style="display:none;">
+        <span id="closeLightbox" aria-label="Close">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div id="lightboxCaption"></div>
+    </div>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.<br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    // Product data array
+    const products = [
+        {name: "Sourdough Loaf", img: "sourdough_bread.jpg", desc: "Naturally fermented, crusty artisan sourdough.", tags: "bread sourdough loaf"},
+        {name: "Whole Wheat Bread", img: "wholewheat_bread.jpg", desc: "Hearty whole wheat, 100% stone-ground flour.", tags: "bread wheat loaf"},
+        {name: "Classic Baguette", img: "baguette.jpg", desc: "French classic for sandwiches and bruschetta.", tags: "baguette bread french"},
+        {name: "Chocolate Croissant", img: "chocolate_croissant.jpg", desc: "Flaky, buttery pastry with rich dark chocolate.", tags: "pastry croissant chocolate"},
+        {name: "Almond Danish", img: "almond_danish.jpg", desc: "Sweet almond cream in crispy Danish dough.", tags: "pastry danish almond"},
+        {name: "Gluten-Free Seed Loaf", img: "gf_seed_loaf.jpg", desc: "Packed with seeds, gluten-free & delicious.", tags: "gf gluten-free seed loaf"},
+        {name: "Cranberry Muffin", img: "cranberry_muffin.jpg", desc: "Tart cranberries in moist, fluffy muffin.", tags: "muffin cranberry treat"},
+        {name: "Cinnamon Roll", img: "cinnamon_roll.jpg", desc: "Sticky & spiced, finished with real icing.", tags: "roll pastry cinnamon"}
+    ];
+    function renderProducts(filter = "") {
+        let grid = document.getElementById('productsGrid');
+        grid.innerHTML = "";
+        products.filter(prod => prod.name.toLowerCase().includes(filter) || prod.tags.includes(filter)).forEach(prod => {
+            let productHTML = `
+            <div class="product-card">
+                <a href="${prod.img}" class="lightbox-link" data-caption="${prod.name}" data-desc="${prod.desc}">
+                  <img src="${prod.img}" alt="${prod.name} artisan bakery product" loading="lazy">
+                </a>
+                <h3>${prod.name}</h3>
+                <p>${prod.desc}</p>
+            </div>`;
+            grid.innerHTML += productHTML;
+        });
+        if (!grid.innerHTML) grid.innerHTML = "<p>No products found matching your search.</p>";
+    }
+
+    document.getElementById('productSearch').addEventListener('input', function(e) {
+        renderProducts(this.value.trim().toLowerCase());
+    });
+    renderProducts();
+
+    // Lightbox logic
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('lightbox-link')) {
+            e.preventDefault();
+            document.getElementById('lightboxImg').src = e.target.href;
+            document.getElementById('lightboxImg').alt = e.target.getAttribute('data-caption');
+            document.getElementById('lightboxCaption').innerText = e.target.getAttribute('data-desc');
+            document.getElementById('lightboxModal').style.display = "flex";
+        }
+        if (e.target.id == 'closeLightbox' || e.target.id == 'lightboxModal') {
+            document.getElementById('lightboxModal').style.display = "none";
+            document.getElementById('lightboxImg').src = "";
+            document.getElementById('lightboxCaption').innerText = "";
+        }
+    });
+    </script>
+</body>
+</html>

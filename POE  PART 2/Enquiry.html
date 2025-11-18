@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service/Volunteer Enquiry - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Enquire about products, services, sponsorship, or volunteering at Sunrise Artisan Bakery.">
+    <meta name="keywords" content="enquiry, sponsorship, volunteer, product, bakery, service, cape town, join, support, baking">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/enquiry.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="Enquire - Sunrise Artisan Bakery">
+    <meta property="og:description" content="Become a sponsor, volunteer, or enquire about our products/services.">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/enquiry.html">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Sunrise bakery logo for enquiry" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="enquiry.html" aria-current="page">Enquire</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <main>
+    <section class="section" id="enq">
+        <h2>Service / Product / Volunteer / Sponsor Enquiry</h2>
+        <form id="enquiryForm" action="#" method="POST" novalidate>
+            <label for="eqName">Name:</label>
+            <input type="text" id="eqName" name="name" required minlength="2">
+            <label for="eqEmail">Email:</label>
+            <input type="email" id="eqEmail" name="email" required>
+            <label for="eqType">I'm interested in:</label>
+            <select id="eqType" name="type" required>
+                <option value="">Select option...</option>
+                <option value="product">Product Purchase</option>
+                <option value="service">Hiring Bakery Services</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="sponsor">Sponsorship</option>
+            </select>
+            <label for="eqMsg">Tell us more:</label>
+            <textarea id="eqMsg" name="message" required minlength="20" rows="5"></textarea>
+            <!-- Dynamic field for cost/availability or reply -->
+            <div id="enqFeedback"></div>
+            <button type="submit">Send Enquiry</button>
+        </form>
+    </section>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.<br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    // Enquiry form JS validation and dynamic feedback
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let name = document.getElementById('eqName').value.trim();
+        let email = document.getElementById('eqEmail').value.trim();
+        let type = document.getElementById('eqType').value.trim();
+        let msg = document.getElementById('eqMsg').value.trim();
+        let feedback = document.getElementById('enqFeedback');
+        if (name.length < 2) { feedback.innerHTML = '<span style="color:red;">Please enter your name.</span>'; return;}
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { feedback.innerHTML = '<span style="color:red;">Please enter a valid email address.</span>'; return;}
+        if (!type) { feedback.innerHTML = '<span style="color:red;">Select your enquiry type.</span>'; return;}
+        if (msg.length < 20) { feedback.innerHTML = '<span style="color:red;">Please provide more info (min 20 characters).</span>'; return;}
+        // Dynamic response
+        let response = "";
+        switch(type) {
+            case 'product':
+                response = "Thank you! Our team will reply soon with pricing & availability.";
+                break;
+            case 'service':
+                response = "Thank you! Our staff will contact you with a services quote.";
+                break;
+            case 'volunteer':
+                response = "Thank you for your interest in volunteering! We'll send info about available roles.";
+                break;
+            case 'sponsor':
+                response = "Thank you for your support! We'll be in touch about sponsorship opportunities.";
+                break;
+        }
+        feedback.innerHTML = `<span style="color:green;">${response}</span>`;
+        setTimeout(()=>{document.getElementById('enquiryForm').reset(); feedback.innerHTML="";},3500);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Contact Sunrise Artisan Bakery in Cape Town. Find our email, phone, address, and message us directly.">
+    <meta name="keywords" content="contact, bakery, email, phone, Cape Town, message">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/contactus.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="Contact Sunrise Artisan Bakery">
+    <meta property="og:description" content="Find us in Cape Town or send us a message online.">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/contactus.html">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Contact Sunrise Artisan Bakery logo" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="enquiry.html">Enquire</a>
+        <a href="contactus.html" aria-current="page">Contact</a>
+    </nav>
+    <main>
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-flex">
+        <div class="contact-details">
+            <h3>Contact Information</h3>
+            <p><strong>Phone:</strong> +27 76 776 4808</p>
+            <p><strong>Email:</strong>
+                <a href="mailto:sunriseartisanbakery@gmail.com">sunriseartisanbakery@gmail.com</a>
+            </p>
+            <p>
+                <strong>Location:</strong> Cape Town, South Africa
+            </p>
+            <p><strong>Find us on:</strong>
+                <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a> |
+                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            </p>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=18.41%2C-33.93%2C18.425%2C-33.915&layer=mapnik"
+                style="border:0;width:100%;height:210px;" allowfullscreen="" loading="lazy"
+                title="Map to Sunrise Artisan Bakery"></iframe>
+        </div>
+        </div>
+        <h3>Send a Message</h3>
+        <form class="contact-form" id="contactForm" action="mailto:sunriseartisanbakery@gmail.com" method="POST" novalidate>
+            <label for="contactName">Name:</label>
+            <input type="text" id="contactName" name="name" required minlength="2">
+
+            <label for="contactEmail">Email:</label>
+            <input type="email" id="contactEmail" name="email" required>
+
+            <label for="contactType">Message Type:</label>
+            <select name="messageType" id="contactType" required>
+                <option value="">Choose type...</option>
+                <option value="Question">Question</option>
+                <option value="Feedback">Feedback</option>
+                <option value="Partnership">Partnership</option>
+            </select>
+
+            <label for="contactMsg">Message:</label>
+            <textarea id="contactMsg" name="message" required minlength="20" rows="5"></textarea>
+            <button type="submit">Send Message</button>
+            <div id="contactMsgFeedback" role="status"></div>
+        </form>
+    </section>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.<br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let name = document.getElementById('contactName').value.trim();
+        let email = document.getElementById('contactEmail').value.trim();
+        let type = document.getElementById('contactType').value.trim();
+        let msg = document.getElementById('contactMsg').value.trim();
+        let msgEl = document.getElementById('contactMsgFeedback');
+        if (name.length < 2) { msgEl.innerHTML = '<span style="color:red;">Please enter your name.</span>'; return;}
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msgEl.innerHTML = '<span style="color:red;">Please enter a valid email address.</span>'; return;}
+        if (!type) { msgEl.innerHTML = '<span style="color:red;">Please select a message type.</span>'; return;}
+        if (msg.length < 20) { msgEl.innerHTML = '<span style="color:red;">Message must be at least 20 characters.</span>'; return;}
+        msgEl.innerHTML = '<span style="color:green;">Thank you! Your message will be sent.</span>';
+        setTimeout(()=>{document.getElementById('contactForm').reset(); msgEl.innerHTML="";},3000);
+    });
+    </script>
+</body>
+</html>

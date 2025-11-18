@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Our artisan bakery in Cape Town: Story, values, mission, and vision for a sustainable, community-centered bakery.">
+    <meta name="keywords" content="about bakery, values, artisan, community, Cape Town, mission, sunrise bakery, vision, sustainability">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/aboutus.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="About Us - Sunrise Artisan Bakery">
+    <meta property="og:description" content="Sunrise Artisan Bakery: Values, mission & vision for community-driven, quality baking in Cape Town.">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/aboutus.html">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Sunrise Artisan Bakery logo with sun and wheat" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav aria-label="Main Navigation">
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html" aria-current="page">About Us</a>
+        <a href="enquiry.html">Enquire</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <main>
+    <section class="section" id="about-us">
+        <h2>About Sunrise Artisan Bakery</h2>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="story" aria-selected="true" aria-controls="story">Our Story</button>
+            <button class="tab-btn" data-tab="values" aria-selected="false" aria-controls="values">Our Values</button>
+            <button class="tab-btn" data-tab="mission" aria-selected="false" aria-controls="mission">Mission & Vision</button>
+            <button class="tab-btn" data-tab="newsletter" aria-selected="false" aria-controls="newsletter">Newsletter Signup</button>
+        </div>
+        <div class="tab-content active" id="story" role="tabpanel" aria-labelledby="Our Story">
+            <h3>Our Story</h3>
+            <p>Sunrise Artisan Bakery was founded to bring wholesome, handmade bread and pastries to Cape Town’s community. We value sustainable practices and local engagement.</p>
+        </div>
+        <div class="tab-content" id="values" role="tabpanel" aria-labelledby="Our Values">
+            <h3>Our Values</h3>
+            <ul>
+                <li>Quality Ingredients – locally sourced and organic</li>
+                <li>Handmade Craftsmanship – careful hand-shaping and baking</li>
+                <li>Sustainable – zero food waste, green energy, compostable packaging</li>
+                <li>Community – local charities and support for Cape Town initiatives</li>
+            </ul>
+        </div>
+        <div class="tab-content" id="mission" role="tabpanel" aria-labelledby="Mission & Vision">
+            <h3>Mission & Vision</h3>
+            <p>
+                <strong>Mission:</strong> Bringing wholesome, handmade baked goods to our community through sustainable local sourcing.<br>
+                <strong>Vision:</strong> To be Cape Town’s trusted, quality-driven community bakery.
+            </p>
+        </div>
+        <div class="tab-content" id="newsletter" role="tabpanel" aria-labelledby="Newsletter Signup">
+            <h3>Newsletter Signup</h3>
+            <form class="newsletter-form" id="newsletterForm" action="#" method="post" autocomplete="off" novalidate>
+                <input type="email" name="email" id="newsletterEmail" placeholder="Your email address" required aria-required="true" aria-label="Email address">
+                <button type="submit">Subscribe</button>
+            </form>
+            <div id="newsletterMsg" role="status" aria-live="polite"></div>
+        </div>
+    </section>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved. <br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active'); 
+                b.setAttribute('aria-selected', 'false');
+            });
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+            let tabGroup = document.querySelectorAll('.tab-content');
+            tabGroup.forEach(tc => tc.classList.remove('active'));
+            document.getElementById(this.dataset.tab).classList.add('active');
+        });
+    });
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let email = document.getElementById('newsletterEmail').value.trim();
+        let msg = document.getElementById('newsletterMsg');
+        let isValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        if (!isValid) {
+            msg.innerHTML = '<span style="color:red;">Please enter a valid email address.</span>';
+            return;
+        }
+        msg.innerHTML = '<span style="color:green;">Thank you for subscribing – check your inbox soon!</span>';
+        this.reset();
+    });
+    </script>
+</body>
+</html>

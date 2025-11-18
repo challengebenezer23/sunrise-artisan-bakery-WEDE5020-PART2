@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - SUNRISE ARTISAN BAKERY</title>
+    <meta name="description" content="Handmade, wholesome baked goods in Cape Town. Artisan bread, pastries, and community values. Welcome to Sunrise Artisan Bakery!">
+    <meta name="keywords" content="artisan bakery, Cape Town, bread, pastries, bakery, handmade, local, sustainable, community">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://yourdomain.com/home.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="sunrise_bakery_logo_small.png">
+    <meta property="og:title" content="Home - Sunrise Artisan Bakery">
+    <meta property="og:description" content="Discover Cape Town's favourite bakery for artisan breads and pastries.">
+    <meta property="og:image" content="sunrise_bakery_logo_small.png">
+    <meta property="og:url" content="https://yourdomain.com/home.html">
+</head>
+<body>
+    <header>
+        <a href="home.html"><img src="sunrise_bakery_logo_small.png" alt="Circular sunrise bakery logo" width="80" height="80" loading="lazy"></a>
+        <div>
+            <h1>SUNRISE ARTISAN BAKERY</h1>
+            <p>Wholesome Bakes, Handmade with Love.</p>
+        </div>
+    </header>
+    <nav aria-label="Main Navigation">
+        <a href="home.html" aria-current="page">Home</a>
+        <a href="products.html">Products</a>
+        <a href="recipes.html">Recipes</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="enquiry.html">Enquire</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+    <main>
+    <section class="hero bakery-bg" id="home">
+        <div class="hero-content">
+            <h2 class="home-animate">FRESH BAKED BREAD &amp; PASTRIES EVERY DAY</h2>
+            <p>
+                Discover our range of breads and bakery products made with care and passion.
+            </p>
+            <button id="openSignup" class="modal-btn">Get our Newsletter</button>
+        </div>
+    </section>
+    <!-- Modal (interactive) -->
+    <div class="modal" id="signupModal" aria-modal="true" role="dialog" aria-labelledby="signupTitle" tabindex="-1">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close" id="closeSignup">&times;</button>
+            <h2 id="signupTitle">Newsletter Signup</h2>
+            <form id="modalNewsletterForm">
+                <label for="modalEmail">Email:</label>
+                <input type="email" name="email" id="modalEmail" required placeholder="your@email.com">
+                <button type="submit">Subscribe</button>
+                <div id="modalNewsletterMsg" role="status"></div>
+            </form>
+        </div>
+    </div>
+    <section class="section" id="features">
+        <h2>Why Choose Us?</h2>
+        <div class="features-row">
+            <div class="feature-card">
+                <img src="sourdough_bread.jpg" alt="Crispy sourdough loaf" width="90" height="90" loading="lazy">
+                <h3>Quality Ingredients</h3>
+                <p>All breads and pastries are made with carefully sourced, premium ingredients.</p>
+            </div>
+            <div class="feature-card">
+                <img src="community_bakers.jpg" alt="Community bakery volunteers" width="90" height="90" loading="lazy">
+                <h3>Community Spirit</h3>
+                <p>We give back to Cape Town through workshops, donations, and supporting small farmers.</p>
+            </div>
+            <div class="feature-card">
+                <img src="environment_friendly.jpg" alt="Leaf and earth logo symbol for sustainable bakery" width="90" height="90" loading="lazy">
+                <h3>Sustainable</h3>
+                <p>Green energy, compostable packaging, and zero food waste philosophy.</p>
+            </div>
+        </div>
+        <p style="text-align:center;">
+            Read more <a href="aboutus.html">about our story</a>, or <a href="products.html">explore our products</a>.
+        </p>
+    </section>
+    </main>
+    <footer>
+        &copy; 2025 SUNRISE ARTISAN BAKERY. All rights reserved.
+        <br>
+        <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+    </footer>
+    <script>
+    // Animate Hero
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.home-animate').classList.add('slidein');
+    });
+    // Modal Logic
+    const openBtn = document.getElementById('openSignup');
+    const modal = document.getElementById('signupModal');
+    const closeBtn = document.getElementById('closeSignup');
+    openBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+    closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+    window.onclick = function(e) { if (e.target == modal) modal.style.display = "none"; }
+    // Modal form validation
+    document.getElementById('modalNewsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let email = document.getElementById('modalEmail').value.trim();
+        let isValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        let msg = document.getElementById('modalNewsletterMsg');
+        if (!isValid) {
+            msg.innerHTML = '<span style="color:red;">Please enter a valid email.</span>';
+            return;
+        }
+        msg.innerHTML = '<span style="color:green;">Thank you for subscribing!</span>';
+        this.reset();
+    });
+    </script>
+</body>
+</html>
