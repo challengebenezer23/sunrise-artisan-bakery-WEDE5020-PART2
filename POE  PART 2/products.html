@@ -13,7 +13,6 @@
     <meta property="og:description" content="Our handmade breads, pastries and treats available in Cape Town.">
     <meta property="og:image" content="sunrise_bakery_logo_small.png">
     <meta property="og:url" content="https://yourdomain.com/products.html">
-    <link rel="stylesheet" href="lightbox.css">
 </head>
 <body>
     <header>
@@ -23,7 +22,7 @@
             <p>Wholesome Bakes, Handmade with Love.</p>
         </div>
     </header>
-    <nav>
+    <nav aria-label="Main Navigation">
         <a href="home.html">Home</a>
         <a href="products.html" aria-current="page">Products</a>
         <a href="recipes.html">Recipes</a>
@@ -38,10 +37,12 @@
         <div class="products-list" id="productsGrid"></div>
     </section>
     <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightboxModal" style="display:none;">
-        <span id="closeLightbox" aria-label="Close">&times;</span>
-        <img class="lightbox-img" id="lightboxImg" src="" alt="">
-        <div id="lightboxCaption"></div>
+    <div class="lightbox" id="lightboxModal" tabIndex="-1" style="display:none;">
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+            <button id="closeLightbox" aria-label="Close">&times;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div id="lightboxCaption"></div>
+        </div>
     </div>
     </main>
     <footer>
@@ -49,27 +50,36 @@
         <a href="sitemap.xml">Sitemap</a> | <a href="robots.txt">Robots.txt</a>
     </footer>
     <script>
-    // Product data array
+    // All product images are in the SAME folder as this HTML file!
     const products = [
-        {name: "Sourdough Loaf", img: "sourdough_bread.jpg", desc: "Naturally fermented, crusty artisan sourdough.", tags: "bread sourdough loaf"},
-        {name: "Whole Wheat Bread", img: "wholewheat_bread.jpg", desc: "Hearty whole wheat, 100% stone-ground flour.", tags: "bread wheat loaf"},
-        {name: "Classic Baguette", img: "baguette.jpg", desc: "French classic for sandwiches and bruschetta.", tags: "baguette bread french"},
-        {name: "Chocolate Croissant", img: "chocolate_croissant.jpg", desc: "Flaky, buttery pastry with rich dark chocolate.", tags: "pastry croissant chocolate"},
-        {name: "Almond Danish", img: "almond_danish.jpg", desc: "Sweet almond cream in crispy Danish dough.", tags: "pastry danish almond"},
-        {name: "Gluten-Free Seed Loaf", img: "gf_seed_loaf.jpg", desc: "Packed with seeds, gluten-free & delicious.", tags: "gf gluten-free seed loaf"},
-        {name: "Cranberry Muffin", img: "cranberry_muffin.jpg", desc: "Tart cranberries in moist, fluffy muffin.", tags: "muffin cranberry treat"},
-        {name: "Cinnamon Roll", img: "cinnamon_roll.jpg", desc: "Sticky & spiced, finished with real icing.", tags: "roll pastry cinnamon"}
+        {name: "Sourdough Loaf", img: "Sourdough_Loaf.jpg", desc: "Naturally fermented, crusty artisan sourdough."},
+        {name: "Whole Wheat Bread", img: "Whole_Wheat_Bread.jpg", desc: "Hearty whole wheat, 100% stone-ground flour."},
+        {name: "Classic Baguette", img: "Classic_Baguette.jpg", desc: "French classic for sandwiches and bruschetta."},
+        {name: "Chocolate Croissant", img: "Chocolate_Croissant.jpg", desc: "Flaky, buttery pastry with rich dark chocolate."},
+        {name: "Almond Danish", img: "Almond_Danish.jpg", desc: "Sweet almond cream in crispy Danish dough."},
+        {name: "Gluten-Free Seed Loaf", img: "Gluten_Free_Seed_Bread.jpg", desc: "Packed with seeds, gluten-free & delicious."},
+        {name: "Cranberry Muffin", img: "Cranberry_Muffin.jpg", desc: "Tart cranberries in moist, fluffy muffin."},
+        {name: "Cinnamon Roll", img: "Cinnamon_Roll.jpg", desc: "Sticky & spiced, finished with real icing."}
     ];
+
     function renderProducts(filter = "") {
         let grid = document.getElementById('productsGrid');
         grid.innerHTML = "";
-        products.filter(prod => prod.name.toLowerCase().includes(filter) || prod.tags.includes(filter)).forEach(prod => {
+        products.filter(prod =>
+            prod.name.toLowerCase().includes(filter) ||
+            prod.desc.toLowerCase().includes(filter)
+        ).forEach(prod => {
             let productHTML = `
             <div class="product-card">
-                <a href="${prod.img}" class="lightbox-link" data-caption="${prod.name}" data-desc="${prod.desc}">
-                  <img src="${prod.img}" alt="${prod.name} artisan bakery product" loading="lazy">
-                </a>
-                <h3>${prod.name}</h3>
+                <h3>
+                    <a href="${prod.img}" class="lightbox-link"
+                        data-caption="${prod.name}"
+                        data-desc="${prod.desc}"
+                        tabindex="0"
+                        style="text-decoration: underline; color: #b0833a;"
+                    >${prod.name}</a>
+                </h3>
+                <img src="${prod.img}" alt="${prod.name} - Sunrise Artisan Bakery" style="width:100%;max-width:250px;display:block;margin:10px auto;border-radius:12px;box-shadow:0 2px 8px #e7cfa6;" loading="lazy">
                 <p>${prod.desc}</p>
             </div>`;
             grid.innerHTML += productHTML;
@@ -77,21 +87,42 @@
         if (!grid.innerHTML) grid.innerHTML = "<p>No products found matching your search.</p>";
     }
 
-    document.getElementById('productSearch').addEventListener('input', function(e) {
+    // Filter as you type
+    document.getElementById('productSearch').addEventListener('input', function() {
         renderProducts(this.value.trim().toLowerCase());
     });
+    // Initial render
     renderProducts();
 
-    // Lightbox logic
+    // Lightbox logic for product name
     document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('lightbox-link')) {
             e.preventDefault();
             document.getElementById('lightboxImg').src = e.target.href;
             document.getElementById('lightboxImg').alt = e.target.getAttribute('data-caption');
-            document.getElementById('lightboxCaption').innerText = e.target.getAttribute('data-desc');
+            document.getElementById('lightboxCaption').innerText = `${e.target.getAttribute('data-caption')}: ${e.target.getAttribute('data-desc')}`;
             document.getElementById('lightboxModal').style.display = "flex";
+            document.getElementById('lightboxModal').focus();
         }
         if (e.target.id == 'closeLightbox' || e.target.id == 'lightboxModal') {
+            document.getElementById('lightboxModal').style.display = "none";
+            document.getElementById('lightboxImg').src = "";
+            document.getElementById('lightboxCaption').innerText = "";
+        }
+    });
+
+    // Accessibility: allow Enter or Space to open image on product name link
+    document.body.addEventListener('keydown', function(e) {
+        if (e.target.classList && e.target.classList.contains('lightbox-link') && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            document.getElementById('lightboxImg').src = e.target.href;
+            document.getElementById('lightboxImg').alt = e.target.getAttribute('data-caption');
+            document.getElementById('lightboxCaption').innerText = `${e.target.getAttribute('data-caption')}: ${e.target.getAttribute('data-desc')}`;
+            document.getElementById('lightboxModal').style.display = "flex";
+            document.getElementById('lightboxModal').focus();
+        }
+        // Escape key closes modal
+        if (e.key === "Escape") {
             document.getElementById('lightboxModal').style.display = "none";
             document.getElementById('lightboxImg').src = "";
             document.getElementById('lightboxCaption').innerText = "";
